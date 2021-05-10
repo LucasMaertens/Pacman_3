@@ -1,6 +1,5 @@
 package pacman.wormholes;
 import java.util.HashSet;
-
 import logicalcollections.LogicalSet;
 import pacman_3.Square;
 
@@ -29,7 +28,6 @@ public class DeparturePortal {
 	 * 			| w!=null && w.dep==this)
 	 * @peerObjects
 	 * @representationObject
-	 * representationObjects
 	 */
 	Set<Wormhole> wormholes = new HashSet<Wormhole>();
 
@@ -38,7 +36,7 @@ public class DeparturePortal {
 	 * @basic
 	 */
 	public Square getSquare() {
-		return square; //kopie nemen? Wie is de client?
+		return square;
 	}
 	
 	/**
@@ -49,8 +47,8 @@ public class DeparturePortal {
 	 * @post | getWormholes().isEmpty()
 	 */
 	public DeparturePortal(Square square){
-		if (square == null&& square.isPassable()!=true)
-			throw new IllegalArgumentException("square is null");
+		if (square == null)
+			throw new IllegalArgumentException("square is null or not passable");
 		this.square=square; //kopie? klant?)
 	}
  	
@@ -58,11 +56,9 @@ public class DeparturePortal {
 	 * geeft de set van wormholes terug waar dit departure object op dit moment bij hoort
 	 * @creates | result
 	 * @basic
-	 * peerObjects
-	 * post | getWormholes()==old(getWormholes())
-	 * post | getSquare()==old(getSquare())
+	 * @peerObjects
 	 * NEW postconditie nodig voor eventueel  geneste abstracties
-	 * post| result.stream().allMatch(w->w!=null)
+	 * post| result.stream().allMatch(w->w!=null && w.getDeparturePortal()==this)
 	 * post| result.stream().allMatch(w->w.getDeparturePortal().getSquare().equals(this.getSquare()))
 	 */ 
 	public Set<Wormhole> getWormholes() {

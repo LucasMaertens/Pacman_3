@@ -1,7 +1,6 @@
 package pacman.wormholes;
 import java.util.HashSet;
 import pacman_3.Square;
-
 import java.util.Set;
 
 /**
@@ -26,16 +25,15 @@ public class ArrivalPortal {
  	 * 	| w!=null && w.arr==this )
 	 * @peerObjects
 	 * @representationObject
-	 * representationObjects // BESTAAT DIT? je kan niet en representatiobjects en peerobjets zijn
 	 */
-	HashSet<Wormhole> wormholes = new HashSet<Wormhole>();
+	Set<Wormhole> wormholes = new HashSet<Wormhole>();
 	
 	/**
 	 * geeft het square terug van dit ArrivalPortal object
 	 * @basic
 	 */
 	public Square getSquare() {
-		return square; //square is immutable, dus volgens mij geen kopie nemen
+		return square; 
 		
 	}
 	
@@ -47,19 +45,16 @@ public class ArrivalPortal {
 	 * post | getWormholes().isEmpty()
 	 */
 	public ArrivalPortal(Square square){
-		if (square == null && square.isPassable()!=true) // MOET DEZE ISPASSABLE WEL? EN INDIEN JA MOET DAN NIET FALSE ZIJN?
-			throw new IllegalArgumentException("square is null");
+		if (square == null) 
+			throw new IllegalArgumentException("square is null or not passable");
 		this.square=square;
 	}
 	 
 	/**
 	 * geeft de set van wormholes terug waar dit arrival object op dit moment bij hoort
-	 * creates | result
-	 * basic
-	 * peerObjects
-	 * post | getWormholes()==old(getWormholes())
-	 * post | getSquare().equals(old(getSquare()))
-	 * post | result.stream().allMatch(s->s!=null)
+	 * @creates | result
+	 * @basic
+	 * @peerObjects
 	 */
 	public Set<Wormhole> getWormholes() {
 		return Set.copyOf(wormholes);

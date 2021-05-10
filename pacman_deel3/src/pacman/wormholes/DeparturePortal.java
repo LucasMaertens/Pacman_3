@@ -49,7 +49,7 @@ public class DeparturePortal {
 	 * @post | getWormholes().isEmpty()
 	 */
 	public DeparturePortal(Square square){
-		if (square == null&& square.isPassable()==true)
+		if (square == null&& square.isPassable()!=true)
 			throw new IllegalArgumentException("square is null");
 		this.square=square; //kopie? klant?)
 	}
@@ -58,11 +58,12 @@ public class DeparturePortal {
 	 * geeft de set van wormholes terug waar dit departure object op dit moment bij hoort
 	 * @creates | result
 	 * @basic
-	 * @peerObjects
-	 * @post | getWormholes()==old(getWormholes())
-	 * @post | getSquare()==old(getSquare())
+	 * peerObjects
+	 * post | getWormholes()==old(getWormholes())
+	 * post | getSquare()==old(getSquare())
 	 * NEW postconditie nodig voor eventueel  geneste abstracties
 	 * post| result.stream().allMatch(w->w!=null)
+	 * post| result.stream().allMatch(w->w.getDeparturePortal().getSquare().equals(this.getSquare()))
 	 */ 
 	public Set<Wormhole> getWormholes() {
 		return Set.copyOf(wormholes);

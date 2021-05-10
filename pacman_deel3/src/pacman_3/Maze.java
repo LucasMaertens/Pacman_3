@@ -18,8 +18,8 @@ public class Maze {
 	private Ghost[] ghosts;
 	private FoodItem[] foodItems;
 	private Wormhole[] wormholes=new Wormhole[0];
-	private ArrivalPortal[] arrivalPortals;
-	private DeparturePortal[] departurePortals ;
+	private final ArrivalPortal[] arrivalPortals;
+	private final DeparturePortal[] departurePortals ;
 	
 	public MazeMap getMap() { return map; }
 	
@@ -35,8 +35,8 @@ public class Maze {
 		this.pacMan = pacMan; 
 		this.ghosts = ghosts.clone();
 		this.foodItems = foodItems.clone();
-		this.arrivalPortals=arrivalPortals.clone();
-		this.departurePortals=departurePortals.clone(); 
+		this.arrivalPortals=arrivalPortals;  // mag niet volgens discussieforum
+		this.departurePortals=departurePortals; 
 	}
 	/**
 	 *  
@@ -62,13 +62,17 @@ public class Maze {
 	}
 	
 	public ArrivalPortal[]  getArrivalPortals(){
-	return Arrays.copyOf(arrivalPortals,arrivalPortals.length); // nog niet zeker of deze lengte de juist is mss -1?
+		return arrivalPortals;
+	// volgens discussieforum gee kopie geven
+			//Arrays.copyOf(arrivalPortals,arrivalPortals.length); // nog niet zeker of deze lengte de juist is mss -1?
 	}
 	public DeparturePortal[]  getDeparturePortals(){
-		return Arrays.copyOf(departurePortals,departurePortals.length);
+		return departurePortals;
+				//Arrays.copyOf(departurePortals,departurePortals.length);
 	}
 	public Wormhole[] getWormholes() { 
-		return  Arrays.copyOf(wormholes, wormholes.length);
+		return  wormholes;
+				//Arrays.copyOf(wormholes, wormholes.length);
 		
 	}
 	public boolean isCompleted() {
@@ -87,7 +91,7 @@ public class Maze {
 		checkPacManDamage();
 	}
 	
-	public void pacManAtePowerPellet() {
+	public void pacManAtePowerPellet() { 
 		for (Ghost ghost : ghosts)
 			ghost.pacManAtePowerPellet();
 	}
@@ -114,21 +118,29 @@ public class Maze {
 		// zodat hij ook de de ghost raakt bij  departure gat.
 		// dit moet omdat er gevraagd wordt om direct te verplaatsen naar het aankomstpunt van de womrhole dus de square
 		// moet direct aangepast worden naar de arrival square en niet eerst nog naar de departure q
-		for(int i=0;i<ghosts.length;i++) {
-			if (ghosts[i].getSquare().equals(newSquare)){
-				ghosts[i].hitBy(pacMan);
-			}
-		}
+		
+		
 		if (newSquare.isPassable()) {
-			
-			for(int i=0;i<departurePortals.length;i++) {
-				if (departurePortals[i].getSquare().equals(newSquare)&& departurePortals[i].getWormholes().size()>=1){
-					
-					Wormhole werkworm=(Wormhole) departurePortals[i].getWormholes().toArray()[random.nextInt(departurePortals[i].getWormholes().size())];
-					
-					newSquare=werkworm.getArrivalPortal().getSquare();
-				}
+			if(departurePortals[1].getSquare().equals(newSquare)) {
+				Object[] gaten= departurePortals[1].getWormholes().toArray();
+				Object gat=gaten[random.nextInt(departurePortals[1].getWormholes().size())];
+				newSquare=((Wormhole) gat).getArrivalPortal().getSquare();
 			}
+			
+			//for(int j=0;j<ghosts.length;j++) {
+			//	if (ghosts[j].getSquare().equals(newSquare)){
+			//		ghosts[j].hitBy(pacMan);
+			//	}}
+			
+			/*for(int i=0;i<departurePortals.length;i++) {
+				if (departurePortals[i].getSquare().getColumnIndex()==newSquare.getColumnIndex()&&departurePortals[i].getSquare().getRowIndex()==newSquare.getRowIndex()&& departurePortals[i].getSquare().getMazeMap().equals(newSquare.getMazeMap())&& departurePortals[i].getWormholes().size()>0){
+					ArrayList<Wormhole> lijstje= new ArrayList<Wormhole>();
+					
+					Object[] werkworm=departurePortals[i].getWormholes().toArray();
+					Object werkwormpje=werkworm[random.nextInt(departurePortals[i].getWormholes().size())];
+					newSquare=((Wormhole) werkwormpje).getArrivalPortal().getSquare();
+				}
+			}*/
 			
 			pacMan.setSquare(newSquare);
 			checkFoodItemCollision(newSquare);

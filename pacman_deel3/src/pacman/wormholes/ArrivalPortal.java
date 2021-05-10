@@ -26,7 +26,7 @@ public class ArrivalPortal {
  	 * 	| w!=null && w.arr==this )
 	 * @peerObjects
 	 * @representationObject
-	 * representationObjects // BESTAAT DIT?
+	 * representationObjects // BESTAAT DIT? je kan niet en representatiobjects en peerobjets zijn
 	 */
 	HashSet<Wormhole> wormholes = new HashSet<Wormhole>();
 	
@@ -47,19 +47,19 @@ public class ArrivalPortal {
 	 * post | getWormholes().isEmpty()
 	 */
 	public ArrivalPortal(Square square){
-		if (square == null && square.isPassable()==true) // MOET DEZE ISPASSABLE WEL? EN INDIEN JA MOET DAN NIET FALSE ZIJN?
+		if (square == null && square.isPassable()!=true) // MOET DEZE ISPASSABLE WEL? EN INDIEN JA MOET DAN NIET FALSE ZIJN?
 			throw new IllegalArgumentException("square is null");
 		this.square=square;
 	}
 	 
 	/**
 	 * geeft de set van wormholes terug waar dit arrival object op dit moment bij hoort
-	 * @creates | result
-	 * @basic
-	 * @peerObjects
-	 * @post | getWormholes()==old(getWormholes())
-	 * @post | getSquare().equals(old(getSquare()))
-	 * @post | result.stream().allMatch(s->s!=null)
+	 * creates | result
+	 * basic
+	 * peerObjects
+	 * post | getWormholes()==old(getWormholes())
+	 * post | getSquare().equals(old(getSquare()))
+	 * post | result.stream().allMatch(s->s!=null)
 	 */
 	public Set<Wormhole> getWormholes() {
 		return Set.copyOf(wormholes);

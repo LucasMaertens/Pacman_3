@@ -58,7 +58,8 @@ public class Wormhole {
 	 * @post | getDeparturePortal()==dep
 	 * @post | getArrivalPortal()==arr
 	 * @mutates | this, dep, arr
-	 * @mutates_properties | this.getDeparturePortal(), this.getArrivalPortal(), arr.getWormholes(), dep.getWormholes()
+	 * @mutates_properties | this.getDeparturePortal(), this.getArrivalPortal(), arr.getWormholes(), dep.getWormholes()  // denk niet dat de eerste twee nodig zijn want je kan geen get opvragen van dit object
+	 * als het nog niet is aangemaakt dus dan kan de uitkomst ook niet veranderen
 	 */
 	public Wormhole(DeparturePortal dep, ArrivalPortal arr) {
 		if (dep == null)
@@ -77,7 +78,7 @@ public class Wormhole {
 	/**
 	 * zet het departurePortal van dit wormhole object gelijk aan de meegegeven departure portal
 	 * @throws IllegalArgumentException | dep == null
-	 * @post | getDeparturePortal().equals(dep)?
+	 * @post | old(getDeparturePortal()).equals(dep)?
 	 * 		 | getDeparturePortal()==old(getDeparturePortal())
 	 * 		 |: getDeparturePortal()==dep
 	 * @post | getArrivalPortal() == old(getArrivalPortal())
@@ -96,7 +97,8 @@ public class Wormhole {
 			throw new IllegalArgumentException("departureportal is null");
 		
 		if (this.dep.equals(dep)==false) {
-		    dep.wormholes.remove(this);
+			// dep moet this.dep zijn
+		    this.dep.wormholes.remove(this);
 			//dep.removewormhole(this);;
 			this.dep=dep;
 			dep.wormholes.add(this);
@@ -108,7 +110,7 @@ public class Wormhole {
 	/**
 	 * zet het arrivalPortal van dit wormhole object gelijk aan de meegegeven departure portal
 	 * @throws IllegalArgumentException | arr == null
-     * @post | getArrivalPortal().equals(arr)?
+     * @post | old(getArrivalPortal()).equals(arr)?
 	 * 		 | getArrivalPortal()==old(getArrivalPortal())
 	 * 		 |: getArrivalPortal()==arr
 	 * @post | getDeparturePortal() == old(getDeparturePortal())

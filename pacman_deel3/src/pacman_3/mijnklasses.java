@@ -1,4 +1,4 @@
-package pacman_3;
+gvcvpackage pacman_3;
 
 import static org.junit.jupiter.api.Assertions.*;
 

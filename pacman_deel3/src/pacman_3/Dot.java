@@ -1,4 +1,4 @@
-package pacman_3;
+package pacman;
 
 /**
  * Each instance of this class represents a dot, located at a fixed position in a Pac-Man maze.

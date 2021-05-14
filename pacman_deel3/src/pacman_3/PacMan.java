@@ -1,4 +1,4 @@
-package pacman_3;
+package pacman;
 
 /**
  * Each instance of this class represents the Pac-Man character in a Pac-Man maze.

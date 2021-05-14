@@ -1,5 +1,5 @@
 package pacman.gui;
-import pacman_3.Direction;
+import pacman.Direction;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -21,13 +21,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import pacman_3.Direction;
-import pacman_3.FoodItem;
-import pacman_3.Ghost;
-import pacman_3.Maze;
-import pacman_3.MazeDescriptions;
-import pacman_3.MazeMap;
-import pacman_3.Square;
+import pacman.Direction;
+import pacman.FoodItem;
+import pacman.Ghost;
+import pacman.Maze;
+import pacman.MazeDescriptions;
+import pacman.MazeMap;
+import pacman.Square;
 import pacman.wormholes.ArrivalPortal;
 import pacman.wormholes.DeparturePortal;
 import pacman.wormholes.Wormhole;

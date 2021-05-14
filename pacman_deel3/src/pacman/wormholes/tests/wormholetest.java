@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import pacman.wormholes.ArrivalPortal;
 import pacman.wormholes.DeparturePortal;
 import pacman.wormholes.Wormhole;
-import pacman_3.MazeMap;
-import pacman_3.Square;
+import pacman.MazeMap;
+import pacman.Square;
 
 
 class wormholetest { 

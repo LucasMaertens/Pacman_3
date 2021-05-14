@@ -1,7 +1,7 @@
 package pacman.wormholes;
 import java.util.HashSet;
 import logicalcollections.LogicalSet;
-import pacman_3.Square;
+import pacman.Square;
 
 import java.util.Set;
 

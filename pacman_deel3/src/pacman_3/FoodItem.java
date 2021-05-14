@@ -1,4 +1,4 @@
-package pacman_3;
+package pacman;
 
 public abstract class FoodItem {
 	

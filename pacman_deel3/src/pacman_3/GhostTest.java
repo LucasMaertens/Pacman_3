@@ -1,12 +1,12 @@
-package pacman_3;
-import pacman_3.Direction;
+package pacman;
+import pacman.Direction;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import pacman_3.Direction;
-import pacman_3.Ghost;
+import pacman.Direction;
+import pacman.Ghost;
 import pacman_3.MazeMap;
 import pacman_3.PacMan;
 import pacman_3.Square;
